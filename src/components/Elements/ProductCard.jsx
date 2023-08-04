@@ -14,7 +14,9 @@ export const ProductCard = ({product}) => {
             </Link>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{product.overview}</p>
             
-            <Rating fullStars={product.rating} emptyStars={5 - product.rating}/>
+            <div className="flex items-center my-2">
+                <Rating rating={product.rating}/>
+            </div>
 
             <p className="flex justify-between items-center">
                 <span className="text-2xl dark:text-gray-200">
