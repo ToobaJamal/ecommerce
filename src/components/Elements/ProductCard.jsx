@@ -2,14 +2,15 @@ import { Rating } from "./Rating";
 import { Link } from "react-router-dom";
 
 export const ProductCard = ({product}) => {
+    console.log(product.id)
   return (
     <div className="m-3 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <Link to={`products/${product.id}`} className="relative" >
+        <Link to={`/products/${product.id}`} className="relative" >
             { product.best_seller && <span className="absolute top-4 left-2 px-2 bg-orange-500 bg-opacity-90 text-white rounded">Best Seller</span>}
             <img className="rounded-t-lg w-full h-64" src={product.poster} alt="" />
         </Link>
         <div className="p-5">
-            <Link to={`products/${product.id}`}>
+            <Link to={`/products/${product.id}`}>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{product.name}</h5>
             </Link>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{product.overview}</p>
