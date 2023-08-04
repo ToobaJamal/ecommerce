@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import Logo from "../../assets/logo.png"
 import { Link } from "react-router-dom"
+import { Search } from "../Sections/Search"
 
 export const Header = () => {
-  const [dark, setDark] = useState(JSON.parse(localStorage.getItem("dark")) ||false)  
+  const [dark, setDark] = useState(JSON.parse(localStorage.getItem("dark")) ||false)
+  const [search, setSearch] = useState(false)  
   useEffect(() => {
     localStorage.setItem("dark", JSON.stringify(dark))
     if(dark) {
@@ -23,7 +25,7 @@ export const Header = () => {
                 </Link>
                 <div className="flex items-center relative">
                     <span onClick={() => setDark(!dark)} className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"></span>
-                    <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
+                    <span onClick={() => setSearch(!search)} className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
                     <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
                         <span className="text-2xl bi bi-cart-fill relative">
                             <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">0</span>
@@ -33,6 +35,9 @@ export const Header = () => {
                 </div>
             </div>
         </nav>
+        
+        {search && <Search />}
+
   </header>
   )
 }
