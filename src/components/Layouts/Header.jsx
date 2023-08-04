@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react"
 import Logo from "../../assets/logo.png"
 import { Link } from "react-router-dom"
 
 export const Header = () => {
+  const [dark, setDark] = useState(JSON.parse(localStorage.getItem("dark")) ||false)  
+  useEffect(() => {
+    localStorage.setItem("dark", JSON.stringify(dark))
+    if(dark) {
+        document.documentElement.classList.add("dark")
+    }
+    else {
+        document.documentElement.classList.remove("dark")
+    }
+  }, [dark])
   return (
     <header>      
         <nav className="bg-white dark:bg-gray-900">
@@ -11,7 +22,7 @@ export const Header = () => {
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CodeBook</span>
                 </Link>
                 <div className="flex items-center relative">
-                    <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"></span>
+                    <span onClick={() => setDark(!dark)} className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"></span>
                     <span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
                     <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
                         <span className="text-2xl bi bi-cart-fill relative">
